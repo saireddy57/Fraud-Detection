@@ -51,7 +51,11 @@ class raw_validate(train_main_validation):
             df_to_dict = df.to_dict(orient="records")
             # print("list---------------------dict",df_to_dict)
             # print("Data---------------------------------frame",df)
-            db_operation.create_db(self,"InsuranceData",'Raw Data',df_to_dict)
+            # db_operation.create_db(self,"InsuranceData",'Raw Data',df_to_dict)
+            dataframe = db_operation.find_data_from_db(self,"InsuranceData",'Raw Data')
+            print("Data-----------------------------------------------frame",dataframe)
+            df = pd.DataFrame.from_dict(dataframe)
+            df.to_csv('TrainingInputFile.csv')
             # print("Load-model------------------------------------------DATA VALIDATION",train_main_validation)
         except Exception as e:
             print(e)

@@ -95,3 +95,17 @@
 2022-03-15/01:13:45		Entered the regex sub function
 2022-03-15/19:35:00		Entered the regex sub function
 2022-03-16/01:10:52		Entered the regex sub function
+2022-03-16/01:29:35		Entered the regex sub function
+2022-03-16/01:44:30		Entered the regex sub function
+2022-03-16/01:45:12		Entered the regex sub function
+2022-03-16/01:47:36		Entered the regex sub function
+2022-03-16/01:48:24		Entered the regex sub function
+2022-03-16/01:49:07		Entered the regex sub function
+2022-03-16/01:51:15		Entered the regex sub function
+2022-03-16/01:52:06		Entered the regex sub function
+2022-03-16/01:59:55		Entered the regex sub function
+2022-03-16/02:00:44		Entered the regex sub function
+2022-03-16/02:01:20		Entered the regex sub function
+2022-03-16/02:02:06		Entered the regex sub function
+2022-03-16/02:06:30		Entered the regex sub function
+2022-03-16/02:08:16		Entered the regex sub function
