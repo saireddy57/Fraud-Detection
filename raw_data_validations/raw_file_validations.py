@@ -6,6 +6,7 @@ import pandas as pd
 from app_log.logger import app_log
 from raw_validation.train_validate import train_main_validation
 from MongoDB.dboperations import db_operation
+from  DataPreproccesing.datapreproccess import data_preproccess
 
 
 
@@ -44,7 +45,7 @@ class raw_validate(train_main_validation):
             train_main_validation.handling_missing_values(self,list,file_path)
             good_file_path = 'TrainingFiles\GoodRawData'
             file_name = os.listdir(good_file_path)
-            print("file_________________________________name",file_name)
+            # print("file_________________________________name",file_name)
             df = pd.read_csv(good_file_path + '\\''' +file_name[0])
 
             # COnverting a DataFrame to Dictionary
@@ -53,9 +54,17 @@ class raw_validate(train_main_validation):
             # print("Data---------------------------------frame",df)
             # db_operation.create_db(self,"InsuranceData",'Raw Data',df_to_dict)
             dataframe = db_operation.find_data_from_db(self,"InsuranceData",'Raw Data')
-            print("Data-----------------------------------------------frame",dataframe)
+            # print("Data-----------------------------------------------frame",dataframe)
             df = pd.DataFrame.from_dict(dataframe)
             df.to_csv('TrainingInputFile.csv')
+            good_path = "TrainingInputFile.csv"
+            data_frame = data_preproccess.treat_special_char_to_nan(self,good_path)
+            # print("SSSSSSSSSSSSSSEEEEEEEEEEEEEEEEEE----------------------------NNNNNNOnee",data_frame)
+            data_set = data_preproccess.replacingnull_value(self,data_frame)
+
+            final_dataframe = data_preproccess.encode_categorical_to_num(self,data_set)
+            final_df_to_dict = final_dataframe.to_dict(orient='records')
+            # db_operation.create_db(self,"InsuranceData","Proccesed Data",final_df_to_dict)
             # print("Load-model------------------------------------------DATA VALIDATION",train_main_validation)
         except Exception as e:
             print(e)
