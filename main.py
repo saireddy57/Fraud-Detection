@@ -3,6 +3,7 @@ from flask import Response
 import os
 from app_log import logger
 from raw_data_validations import raw_file_validations
+from training_models_dir.training_file import train_model
 
 
 app = Flask(__name__)
@@ -24,13 +25,20 @@ def train():
         # Calling function to perform Data Validations
 
         train_val_obj.train_val(list_dir,file_path)
+
+        """Training Started"""
+
+        traning_init = train_model()
+
+        traning_init.training_models()
+
         # for  i in list_dir:
         #     print(i,type(i))
         #     print("dddddddddddddddduuuuuuuuuuuufggggggggggggggggggggg",i.split('_'),len(i.split('_')[1]),len(i.split('_')[2]))
 
         # print("tr-----------------------------ain",train_val_obj)
 
-        print("SHai for youuuuuuuuuuuuuuuuul",file_path,list_dir)
+        # print("SHai for youuuuuuuuuuuuuuuuul",file_path,list_dir)
     return "ENTERED TRAIN Succesfully"
 
 if __name__ == "__main__" :

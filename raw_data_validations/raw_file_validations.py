@@ -57,15 +57,22 @@ class raw_validate(train_main_validation):
             # print("Data-----------------------------------------------frame",dataframe)
             df = pd.DataFrame.from_dict(dataframe)
             df.to_csv('TrainingInputFile.csv')
-            good_path = "TrainingInputFile.csv"
-            data_frame = data_preproccess.treat_special_char_to_nan(self,good_path)
-            # print("SSSSSSSSSSSSSSEEEEEEEEEEEEEEEEEE----------------------------NNNNNNOnee",data_frame)
-            data_set = data_preproccess.replacingnull_value(self,data_frame)
 
-            final_dataframe = data_preproccess.encode_categorical_to_num(self,data_set)
-            final_df_to_dict = final_dataframe.to_dict(orient='records')
-            # db_operation.create_db(self,"InsuranceData","Proccesed Data",final_df_to_dict)
-            # print("Load-model------------------------------------------DATA VALIDATION",train_main_validation)
+            """ALready included in train_model Section"""
+
+
+            # good_path = "TrainingInputFile.csv"
+            # data_frame = data_prepro  ccess.treat_special_char_to_nan(self,good_path)
+            # # print("SSSSSSSSSSSSSSEEEEEEEEEEEEEEEEEE----------------------------NNNNNNOnee",data_frame)
+            # data_set = data_preproccess.replacingnull_value(self,data_frame)
+            #
+            # final_dataframe = data_preproccess.encode_categorical_to_num(self,data_set)
+            # final_df_to_dict = final_dataframe.to_dict(orient='records')
+            # # db_operation.create_db(self,"InsuranceData","Proccesed Data",final_df_to_dict)
+            # # print("Load-model------------------------------------------DATA VALIDATION",train_main_validation)
+            # df_db = db_operation.find_data_from_db(self,"InsuranceData","Proccesed Data")
+            # df_from_db = pd.DataFrame.from_dict(df_db)
+            # df_from_db.to_csv("FinalCSVFile.csv")
         except Exception as e:
             print(e)
 

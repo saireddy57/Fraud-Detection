@@ -22,10 +22,20 @@ class db_operation:
             database_create = client[db_name]
             #Create Collection or tables inside the Database
             collect_name = database_create[collection_name]
-            collect_name.delete_many({})
+            # collect_name.delete_many({})
             collect_name.insert_many(df)
        except Exception as e:
            print(e)
+
+    def create_collection(self,db_name,coll_name,df):
+        password = db_operation.pwd
+        client = pymongo.MongoClient(
+            f"mongodb+srv://insurance:{password}@insurancedata.zfzwk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+
+        database_name = client.get_database(db_name)
+        collection_name = database_name[coll_name]
+        collection_name.insert_many(df)
+
 
     def find_data_from_db(self,db_name,collection_name):
         try:

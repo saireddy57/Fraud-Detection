@@ -14,7 +14,7 @@ class train_main_validation:
 
     def create_good_data_directory(self):
         dir_loc = "TrainingFiles\GoodRawData"
-        print("OOOOOOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",os.path.exists(dir_loc))
+        # print("OOOOOOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",os.path.exists(dir_loc))
         # if os.path.exists(dir_loc):
         #     del
 
