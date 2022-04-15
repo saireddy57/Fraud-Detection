@@ -115,11 +115,23 @@ class data_preproccess:
     def standardise_data(self,data):
         try:
             std_scalar = StandardScaler()
-            num_df = data[[col for col in data.columns if data[col].dtypes == 'int64']]
-            print("DDD))))))))))))))))))))))))))))DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",num_df,num_df.columns)
-            std_data = std_scalar.fit_transform(num_df)
-            std_df = pd.DataFrame(std_data,columns=num_df.columns,index=num_df.index)
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",std_df)
+            print("data----------------------------------type",type(data))
+            if isinstance(data, pd.core.series.Series):
+                # data.drop(['Cluster'])
+                data_np = np.array(data).reshape(-1,1)
+                std_data = std_scalar.fit_transform(data_np)
+                # print("DDaseeeeeeeeeeeeeeeeeeeeeerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",std_data)
+
+            else:
+                self.data = data
+                num_df = self.data[[col for col in self.data.columns if self.data[col].dtypes == 'int64']]
+                # print("DDD))))))))))))))))))))))))))))DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",num_df,num_df.columns)
+                std_data = std_scalar.fit_transform(num_df)
+                std_df = pd.DataFrame(std_data,columns=num_df.columns,index=num_df.index)
+                self.data.drop(columns = num_df.columns,axis =1,inplace = True)
+                final_df = pd.concat([self.data,std_df],axis=1)
+                # print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",final_df)
+            return final_df
         except Exception as e:
             print(e)
 

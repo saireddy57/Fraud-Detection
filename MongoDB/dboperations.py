@@ -1,7 +1,5 @@
-import pandas as pd
 import pymongo
 import urllib
-import pandas
 from app_log.logger import app_log
 
 class db_operation:
