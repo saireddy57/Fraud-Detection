@@ -5,6 +5,7 @@ from DataPreproccesing.clustering import Cluster
 from sklearn.model_selection import train_test_split
 from model_building import model_build
 from app_log import logger
+from  file_methods.file_method import file_operations
 
 
 class train_model:
@@ -33,7 +34,7 @@ class train_model:
             df_db = db_operation.find_data_from_db(self, "InsuranceData", "CLeaned Data")
             df_from_db = pd.DataFrame.from_dict(df_db)
             print("df-----------------------from_______________db",df_from_db)
-            df_from_db.to_csv("FinalCSVFile.csv")
+            # df_from_db.to_csv("FinalCSVFile.csv")
             knee_value = Cluster.elbow_plot(self,x_sample,y_sample)
             Cluster.create_clusters(self,knee_value,x_sample,y_sample)
             x_sample['fraud_reported'] = y_sample
@@ -54,7 +55,9 @@ class train_model:
                 x_test = data_preproccess.standardise_data(self,test_x)
                 # print("yyyyyyyyyyyyyyyyyyyyyyyyy-----------------------------------train",x_test)
                 model_att = model_build.model_creation()
-                model_att.find_best_params(x_train,train_y,x_test,test_y)
+                self.final_model = model_att.find_best_params(x_train,train_y,x_test,test_y)
+                print("final+++++++++++++++++++++++++++++++++++model",self.final_model[0],self.final_model[1])
+                file_operations.save_model(self,self.final_model[0],self.final_model[1])
 
 
         except Exception as e:

@@ -33,6 +33,7 @@ class Cluster:
         try:
             kmean = KMeans(n_clusters=knee,init = 'k-means++',random_state=42)
             kmean.fit(x)
+            print("me--------------------------------------------------an-pathhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",kmean)
             # file_class = file_operations(self.model_path)
             file_operations.save_model(self,kmean,'KMean')
 

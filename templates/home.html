@@ -177,11 +177,11 @@
 			$('#loading').hide();
 			$("#customfile").click(function(e){
 				e.preventDefault();
-				$('#loading').show();
+				$('<div id="load"></div>ing').show();
 				var path = $("#csvfile").val();
 				$.ajax({
 					//change url below
-					url : "/train",
+					url : "/predict",
 					type: "POST",
 					data: {filepath:path},
 					success: function(response){

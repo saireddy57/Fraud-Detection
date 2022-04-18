@@ -62,6 +62,8 @@ class train_main_validation:
 
         except Exception as e:
             print(e)
+
+
     def handling_missing_values(self,list,file_path):
         file_path = train_main_validation.file_location
         try:
