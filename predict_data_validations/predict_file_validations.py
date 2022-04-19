@@ -36,6 +36,9 @@ class predict_validate(predict_main_validation):
         except Exception as e:
             return e
 
+    # def delete_predict_file(self):
+
+
     def predict_val(self,list,file_path):
         try:
             regex = self.regex_val()
@@ -50,7 +53,7 @@ class predict_validate(predict_main_validation):
 
             # COnverting a DataFrame to Dictionary
             df_to_dict = df.to_dict(orient="records")
-            db_operation.create_db(self,"InsuranceData",'Prediction Data',df_to_dict)
+            # db_operation.create_db(self,"InsuranceData",'Prediction Data',df_to_dict)
             dataframe = db_operation.find_data_from_db(self,"InsuranceData",'Prediction Data')
             df = pd.DataFrame.from_dict(dataframe)
             df.to_csv('PredictionFile.csv')

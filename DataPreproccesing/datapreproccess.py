@@ -19,7 +19,10 @@ class data_preproccess:
         try:
             # file_name = os.listdir(good_path)
             # df = pd.read_csv(good_path + file_name[0])
-            df = pd.read_csv(good_path)
+            if isinstance(good_path,pd.core.frame.DataFrame):
+                df = good_path
+            else:
+                df = pd.read_csv(good_path)
             # print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",df)
             # list of columns not useful for the prediction
             list_of_col = ['policy_number','policy_bind_date','policy_state','insured_zip','incident_location','incident_date','incident_state','incident_city','insured_hobbies','auto_make','auto_model','auto_year','age','insured_zip']
@@ -124,13 +127,14 @@ class data_preproccess:
 
             else:
                 self.data = data
+                print("self.........................................data",self.data)
                 num_df = self.data[[col for col in self.data.columns if self.data[col].dtypes == 'int64']]
-                # print("DDD))))))))))))))))))))))))))))DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",num_df,num_df.columns)
+                print("DDD))))))))))))))))))))))))))))DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",num_df,num_df.columns)
                 std_data = std_scalar.fit_transform(num_df)
                 std_df = pd.DataFrame(std_data,columns=num_df.columns,index=num_df.index)
                 self.data.drop(columns = num_df.columns,axis =1,inplace = True)
                 final_df = pd.concat([self.data,std_df],axis=1)
-                # print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",final_df)
+                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",final_df)
             return final_df
         except Exception as e:
             print(e)

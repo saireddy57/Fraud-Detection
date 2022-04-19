@@ -30,6 +30,10 @@ def predict_route():
 
         predic_model = prediction_from_model.model_predict()
 
+        path = predic_model.data_prediction()
+
+
+
         # predic_model
 
 
