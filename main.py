@@ -32,12 +32,9 @@ def predict_route():
 
         path = predic_model.data_prediction()
 
+        print("pa--------------------------------th",path)
 
-
-        # predic_model
-
-
-    return "Prediction Started"
+    return Response("Prediction File created at %s!!!" % path)
 
 
 @app.route('/train',methods = ['POST','GET'])
@@ -60,8 +57,6 @@ def train_route():
         traning_init = train_model()
 
         traning_init.training_models()
-
-    return "ENTERED TRAIN Succesfully"
 
 if __name__ == "__main__" :
     app.run()

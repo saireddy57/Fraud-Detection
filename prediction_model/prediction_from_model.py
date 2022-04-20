@@ -28,9 +28,26 @@ class model_predict:
             df_std['Cluster']=cluster
             print("df---------------with------------------------clusterssssssss",df_std,df_std['Cluster'].unique())
             df_std.to_csv("FInalFIleeeeeee.csv")
+            predictions =[]
             for i in df_std['Cluster'].unique():
                 cluster_data =df_std.drop(['Cluster'],axis=1)
-                # model_name =
+                model_name = 'XGBoost Model'
+                model = file_operations.load_model(self,model_name)
+                print("Final-------------------------------------Model",model,model_name,cluster_data)
+                result = model.predict(cluster_data)
+                for res in result:
+                    print("ressssssssssssssssssssssssssssssssssssssssss",res)
+                    if res ==0:
+                        predictions.append('N')
+                    else:
+                        predictions.append('Y')
+                print("Pred-------------------------------ctions",predictions)
+                final = pd.DataFrame(list(zip(predictions)),columns=['Predictions'])
+                # path = "Prediction_Output_File/Predictions.csv"
+                final.to_csv("Prediction_Output_File/Predictions.csv", header=True,
+                             mode='a+')  # appends result to prediction file
+
+            return "Prediction_Output_File/Predictions.csv"
         except Exception as e:
             print(e)
 

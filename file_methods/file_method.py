@@ -32,23 +32,28 @@ class file_operations:
         except Exception as e:
             print(e)
 
-    def find_correct_model(self,cluster_number):
-        try:
-            self.model_path = 'models/'
-            self.cluster_number=cluster_number
-            self.list_of_files=os.listdir(self.model_path)
-
-            for self.file in self.list_of_files:
-                try:
-                    if (self.file.index(str(self.cluster_number)) != -1):
-                        self.model_name = self.file
-                except:
-                    continue
-            self.model_name = self.model_name.split('.')[0]
-
-            return self.model_name
-        except Exception as e:
-            print(e)
+    # def find_correct_model(self,cluster_number):
+    #     try:
+    #         self.model_path = 'models/'
+    #         self.cluster_number=cluster_number
+    #         self.list_of_files=os.listdir(self.model_path)
+    #
+    #         for self.file in self.list_of_files:
+    #             print("self-------------------------------------file",self.file,self.file.index(str(self.cluster_number)))
+    #             try:
+    #                 if (self.file.index(str(self.cluster_number)) != -1):
+    #                     print("file----------------------------------------indexxxxxxxxxxxxxxx",self.file,type(self.file))
+    #                     model_name = self.file
+    #                 else:
+    #                     continue
+    #             except Exception as e:
+    #                 print(e)
+    #         model_name = model_name.split('.')[0]
+    #         print("MODEL+++++++++++++++++++++++++++++++++++++++++++NAME",model_name)
+    #
+    #         return model_name
+    #     except Exception as e:
+    #         print(e)
 
 
 
