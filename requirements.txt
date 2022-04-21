@@ -24,3 +24,4 @@ imblearn==0.0
 kneed== 0.7.0
 xgboost==1.5.2
 gunicorn==20.1.0
+pytest==6.2.4
